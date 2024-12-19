@@ -40,8 +40,8 @@ def validate_xml_schema_by_type():
 
     # Parse the actual XML
     try:
-        actual_xml_root = etree.fromstring(xml_data.encode('utf-8'))
-        actual_xml = etree.tostring(actual_xml_root, encoding='utf-8', method='xml')
+        actual_xml_root = etree.fromstring(xml_data.encode('utf-16'))
+        actual_xml = etree.tostring(actual_xml_root, encoding='utf-16', method='xml')
     except etree.XMLSyntaxError as e:
         return jsonify({"error": "Invalid XML format", "details": str(e)}), 400
 
@@ -58,7 +58,7 @@ def validate_xml_schema_by_type():
     for item in processed_data:
         if item.get('type') == report_type:
             try:
-                schema_xml_root = etree.fromstring(item['schema'].encode('utf-8'))
+                schema_xml_root = etree.fromstring(item['schema'].encode('utf-16'))
                 schema = etree.XMLSchema(schema_xml_root)
             except (KeyError, etree.XMLSyntaxError) as e:
                 return jsonify({"error": "Invalid schema", "details": str(e)}), 400
