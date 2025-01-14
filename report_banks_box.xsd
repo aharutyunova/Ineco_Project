@@ -1,0 +1,113 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!-- edited with XMLSpy v2011 rel. 2 (http://www.altova.com) by TeaM DJiNN (TeaM DJiNN) -->
+<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema">
+	<xs:element name="report_banks_box">
+		<xs:complexType>
+			<xs:complexContent>
+				<xs:extension base="report"/>
+			</xs:complexContent>
+		</xs:complexType>
+	</xs:element>
+	<xs:simpleType name="T_Date">
+		<xs:restriction base="xs:date"/>
+	</xs:simpleType>
+	<xs:simpleType name="T_Number">
+		<xs:restriction base="xs:unsignedLong"/>
+	</xs:simpleType>
+	<xs:simpleType name="T_YesNo">
+		<xs:restriction base="xs:boolean">
+			<xs:pattern value="[1,0]{1}"/>
+		</xs:restriction>
+	</xs:simpleType>
+	<xs:simpleType name="T_Country">
+		<xs:restriction base="xs:string">
+			<xs:pattern value="[A-Z]{2}"/>
+		</xs:restriction>
+	</xs:simpleType>
+	<xs:simpleType name="T_FDK">
+		<xs:restriction base="xs:integer">
+			<xs:pattern value="[0-9]{5}"/>
+		</xs:restriction>
+	</xs:simpleType>
+	<xs:simpleType name="T_Text">
+		<xs:restriction base="xs:string">
+			<xs:minLength value="1"/>
+			<xs:pattern value="[A-Z,0-9,\s,\?,\-,\.,/,\*\+,\t,\\,Ա,Բ,Գ,Դ,Ե,Զ,Է,Ը,Թ,Ժ,Ի,Լ,Խ,Ծ,Կ,Հ,Ձ,Ղ,Ճ,Մ,Յ,Ն,Շ,Ո,Չ,Պ,Ջ,Ռ,Ս,Վ,Տ,Ր,Ց,Ո,Ւ,Փ,Ք,և,Օ,Ֆ]{0,3000}"/>
+		</xs:restriction>
+	</xs:simpleType>
+	<xs:simpleType name="T_Document">
+		<xs:restriction base="T_Text">
+			<xs:pattern value="[A-Z]{2}[0-9]{7}"/>
+		</xs:restriction>
+	</xs:simpleType>
+	<xs:complexType name="report_update">
+		<xs:sequence>
+			<xs:element name="bank_code" type="T_FDK"/>
+			<xs:element name="sent_date" type="T_Text"/>
+			<xs:element name="seq_number" type="T_Text"/>
+			<xs:element name="change_number" type="T_Number" minOccurs="0"/>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:complexType name="report_name">
+		<xs:sequence>
+			<xs:element name="bank_code" type="T_FDK"/>
+			<xs:element name="sent_date" type="T_Text"/>
+			<xs:element name="seq_number" type="T_Text"/>
+			<xs:element name="change_number" type="T_Number" minOccurs="0"/>
+			<xs:element name="change_reason" type="T_Text" minOccurs="0"/>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:complexType name="transaction_description">
+		<xs:sequence>
+			<xs:element name="report_type" type="T_Number"/>
+			<xs:element name="safe_num" type="T_Number"/>
+			<xs:element name="action_date" type="T_Date"/>
+			<xs:element name="notes" type="T_Text" minOccurs="0"/>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:complexType name="report">
+		<xs:sequence>
+			<xs:element name="report_name" type="report_name"/>
+			<xs:element name="report_update" type="report_update" minOccurs="0"/>
+			<xs:element name="transaction">
+				<xs:complexType>
+					<xs:complexContent>
+						<xs:extension base="transaction_description"/>
+					</xs:complexContent>
+				</xs:complexType>
+			</xs:element>
+			<xs:element name="side_section" type="side_section" maxOccurs="unbounded"/>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:complexType name="side_section">
+		<xs:sequence>
+			<xs:element name="side_type" type="T_Number"/>
+			<xs:element name="side_subtype" type="T_Number"/>
+			<xs:element name="auth_clients" type="auth_clients" minOccurs="0"/>
+			<xs:element name="first_name" type="T_Text" minOccurs="0"/>
+			<xs:element name="last_name" type="T_Text" minOccurs="0"/>
+			<xs:element name="family_name" type="T_Text" minOccurs="0"/>
+			<xs:element name="birth_date" type="T_Date" minOccurs="0"/>
+			<xs:element name="citizenship" type="T_Country" minOccurs="0"/>
+			<xs:element name="psn" type="T_Text" minOccurs="0"/>
+			<xs:element name="doc_type" type="T_Text" minOccurs="0"/>
+			<xs:element name="doc_number" type="T_Text" minOccurs="0"/>
+			<xs:element name="issue_date" type="T_Date" minOccurs="0"/>
+			<xs:element name="issued_by" type="T_Text" minOccurs="0"/>
+			<xs:element name="validity_date" type="T_Date" minOccurs="0"/>
+			<xs:element name="company_name" type="T_Text" minOccurs="0"/>
+			<xs:element name="leg_org_form" type="T_Number" minOccurs="0"/>
+			<xs:element name="other_leg_org_form" type="T_Text" minOccurs="0"/>
+			<xs:element name="manager_name" type="T_Text" minOccurs="0"/>
+			<xs:element name="tax_id" type="T_Text" minOccurs="0"/>
+			<xs:element name="reg_number" type="T_Text" minOccurs="0"/>
+		</xs:sequence>
+		<xs:attribute name="id" type="T_Number"/>
+	</xs:complexType>
+	<xs:complexType name="auth_clients">
+		<xs:sequence>
+			<xs:element name="reference_id" type="T_Number" maxOccurs="unbounded"/>
+		</xs:sequence>
+		<xs:attribute name="reference_tag_name" fixed="side_section"/>
+	</xs:complexType>
+</xs:schema>

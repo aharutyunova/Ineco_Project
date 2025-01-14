@@ -75,3 +75,38 @@ def validate_xml_schema_by_type():
 
     # If no matching report type is found
     return jsonify({"error": "No matching schema found for the given report type."}), 400
+
+
+@app.route('/validate_xml_schema', methods=['POST'])
+def validat():
+    # Get the uploaded file and report type
+    xml_data = request.form.get('xml_data')
+    # report_type = request.form.get('report_type')
+    if not xml_data:
+        return jsonify({"message": "xml_data is required"}), 400
+    root = ET.fromstring(xml_data)
+    xsd_name = root.tag
+    # actual_xml
+    try:
+        actual_xml_root = etree.fromstring(xml_data.encode('utf-16'))
+        actual_xml = etree.tostring(actual_xml_root, encoding='utf-16', method='xml')
+    except etree.XMLSyntaxError as e:
+        return jsonify({"error": "Invalid XML format", "details": str(e)}), 400
+    # schema_root = etree.XML(xml_schema)
+    try:
+        with open(f"{xsd_name}.xsd", "rb") as f:
+            file_content = f.read()
+    except:
+        return jsonify({"error": "XSD file not found", "details": str(e)}), 400
+
+    try:
+        schema_xml_root =  etree.fromstring(file_content)
+        schema = etree.XMLSchema(schema_xml_root)
+    except (KeyError, etree.XMLSyntaxError) as e:
+                return jsonify({"error": "Invalid schema", "details": str(e)}), 400
+    
+    xml_doc = etree.XML(actual_xml)
+    if schema.validate(xml_doc):
+        return jsonify("message", "XML is valid against the schema."), 200
+    else:
+        return jsonify("error", str(schema.error_log)), 400
