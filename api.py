@@ -78,7 +78,7 @@ def validate_xml_schema_by_type():
 
 
 @app.route('/validate_xml_schema', methods=['POST'])
-def validat():
+def validate_xml():
     # Get the uploaded file and report type
     xml_data = request.form.get('xml_data')
     # report_type = request.form.get('report_type')
