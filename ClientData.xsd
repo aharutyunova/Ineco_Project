@@ -1,0 +1,64 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xs:schema
+	xmlns:xs="http://www.w3.org/2001/XMLSchema">
+	<xs:element name="ClientData">
+		<xs:complexType>
+			<xs:sequence>
+				<xs:element name="Year" type="xs:gYear"/>
+				<xs:element name="PersonalInformation">
+					<xs:complexType>
+						<xs:sequence>
+							<xs:element name="Natural" minOccurs="0" maxOccurs="1">
+								<xs:complexType>
+									<xs:sequence>
+										<xs:element name="BankCode" type="xs:string"/>
+										<xs:element name="FirstName" type="xs:string"/>
+										<xs:element name="LastName" type="xs:string"/>
+										<xs:element name="SSN" type="xs:string" minOccurs="0"/>
+										<xs:element name="SSNMissing" type="xs:string" minOccurs="0"/>
+										<xs:element name="PassportID" type="xs:string" minOccurs="0"/>
+									</xs:sequence>
+								</xs:complexType>
+							</xs:element>
+							<xs:element name="Legal" minOccurs="0" maxOccurs="1">
+								<xs:complexType>
+									<xs:sequence>
+										<xs:element name="LegalName" type="xs:string"/>
+										<xs:element name="Tin" type="xs:string"/>
+									</xs:sequence>
+								</xs:complexType>
+							</xs:element>
+						</xs:sequence>
+					</xs:complexType>
+				</xs:element>
+				<xs:element name="AccountDetails">
+					<xs:complexType>
+						<xs:sequence>
+							<xs:element name="Account" maxOccurs="unbounded">
+								<xs:complexType>
+									<xs:sequence>
+										<xs:element name="AccountNumber" type="xs:string"/>
+										<xs:element name="AccountCurrency" type="xs:string"/>
+										<xs:element name="BalanceBeginning" type="xs:decimal"/>
+										<xs:element name="Incoming">
+											<xs:complexType>
+												<xs:sequence>
+													<xs:element name="Total" type="xs:decimal"/>
+													<xs:element name="PersonalTransfers" type="xs:decimal" minOccurs="0"/>
+													<xs:element name="FinInstTransfers" type="xs:decimal" minOccurs="0"/>
+													<xs:element name="Other" type="xs:decimal" minOccurs="0"/>
+												</xs:sequence>
+											</xs:complexType>
+										</xs:element>
+										<xs:element name="Outgoing" type="xs:decimal"/>
+										<xs:element name="BalanceEnding" type="xs:decimal"/>
+									</xs:sequence>
+								</xs:complexType>
+							</xs:element>
+						</xs:sequence>
+					</xs:complexType>
+				</xs:element>
+			</xs:sequence>
+		</xs:complexType>
+	</xs:element>
+</xs:schema>
