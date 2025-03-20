@@ -1,0 +1,54 @@
+<?xml version="1.0"?>
+<report_banks><report_name>
+		<fmcrn>10120500</fmcrn>
+		<sent_date>190624</sent_date>
+		<seq_number>0001</seq_number>
+	</report_name>
+	<transaction_description>
+		<trans_date>2024-06-18</trans_date>
+		<cash>0</cash>
+		<currency>USD</currency>
+		<amount>340000</amount>
+		<amount_amd>132168200</amount_amd>
+	</transaction_description>
+	<transaction_type>
+		<transaction>101103</transaction>
+		<sub_transaction>101201</sub_transaction>
+		<intermediary_bank>1</intermediary_bank>
+		<details>101409</details>
+		<other_details>SUBSCRIPTION LAIF ARA KHACHIKYAN PURCHASE SHARES OF LIQUID ALPHA INCOME FUND  SP FUND ISIN KYG1R84N1597 PER SUBSCRIPTION  </other_details>
+	</transaction_type>
+	<side_section id="0">
+		<side_type>1</side_type>
+		<side_subtype>1</side_subtype>
+		<first_name>ԱՐԱ</first_name>
+		<last_name>ԽԱՉԻԿՅԱՆ</last_name>
+		<family_name>ԱՐՏԱՎԱԶԴԻ</family_name>
+		<dob>1990-11-28</dob>
+		<citizenship>AM</citizenship>
+		<doc_type>AND</doc_type>
+		<doc_number>AV0238303</doc_number>
+		<date_of_issue>2022-05-31</date_of_issue>
+		<giver>009</giver>
+		<expire_date>2032-05-31</expire_date>
+		<bank>ԻՆԵԿՈԲԱՆԿ ՓԲԸ</bank>
+		<country_bank>AM</country_bank>
+		<bank_account>2050092982791020</bank_account>
+		<bic>INJSAM22</bic>
+		<country>AM</country>
+		<region>ԵՐԵՎԱՆ</region>
+		<city>ԵՐԵՎԱՆ</city>
+		<address>Ք. ԵՐԵՎԱՆ, ԱՐՑԱԽԻ ՓՈՂ.,10Վ Շ.,49ԲՆ.</address>
+	</side_section>
+	<side_section id="1">
+		<side_type>4</side_type>
+		<side_subtype>2</side_subtype>
+		<first_name>CAREFUL INVESTMENTS SPC - LIQUID ALPHA INCOME FUND LAIF  SP</first_name>
+		<leg_org_form>1</leg_org_form>
+		<bank>NORTHERN TRUST INTERNATIONAL BANKING CORPORATION, THE</bank>
+		<country_bank>US</country_bank>
+		<bank_account>25123120010</bank_account>
+		<bic>CNORUS33XXX</bic>
+	</side_section>
+</report_banks>
+
